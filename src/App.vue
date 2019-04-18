@@ -1,17 +1,26 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <NavBar />
+    <div id="main">
+      <section id="main_section">
+        <KeyMarketing />
+        <b-container>
+          <FundRaise />
+        </b-container>
+      </section>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NavBar from './components/NavBar.vue'
+import KeyMarketing from './components/KeyMarketing.vue'
+import FundRaise from './components/FundRaise.vue'
 
 export default {
-  name: 'app',
+  name: 'charity',
   components: {
-    HelloWorld
+    NavBar, KeyMarketing, FundRaise
   }
 }
 </script>
@@ -21,8 +30,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
