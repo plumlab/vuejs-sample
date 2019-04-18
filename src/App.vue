@@ -1,14 +1,9 @@
 <template>
   <div id="app">
     <NavBar />
-    <div id="main_section">
-      <KeyMarketing />
-    </div>
-    <section id="content_section">
-      <b-container>
-        <FundRaise />
-      </b-container>
-    </section>    
+    <section id="content">
+      <router-view></router-view>
+    </section>
     <footer id="footer">
       <b-container>
         <div class="solid-line mb4x"></div>
@@ -20,13 +15,11 @@
 
 <script>
 import NavBar from './components/NavBar.vue'
-import KeyMarketing from './components/KeyMarketing.vue'
-import FundRaise from './components/FundRaise.vue'
 
 export default {
-  name: 'charity',
+  name: 'app',
   components: {
-    NavBar, KeyMarketing, FundRaise
+    NavBar
   }
 }
 </script>
@@ -38,11 +31,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #333;
 }
-
-#content_section {
-  padding: 4rem 1rem;
-}
-
 
 .solid-line {
   background: 0;
