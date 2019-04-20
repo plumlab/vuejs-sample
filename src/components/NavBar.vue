@@ -6,7 +6,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item><router-link to="/">Home</router-link></b-nav-item>
+          <b-nav-item><router-link v-bind:to="{name: 'Home'}">Home</router-link></b-nav-item>
           <b-nav-item href="#">Fundraise</b-nav-item>
           <b-nav-item href="#">Blog</b-nav-item>
           <b-nav-item href="#">About Us</b-nav-item>
@@ -17,7 +17,7 @@
           <b-nav-form>
             <b-form-input size="sm" placeholder="Search"></b-form-input>
           </b-nav-form>
-          <b-nav-item right><router-link to="/sign-in">Sign in</router-link></b-nav-item>
+          <b-nav-item right><router-link v-bind:to="{name: 'SignIn'}">Sign in</router-link></b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
