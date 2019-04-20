@@ -2,17 +2,17 @@
   <div class="signin">
     <b-container fluid>
       <b-row class="mb-3" align-h="center">
-        <div class="title">Sign In</div>
+        <div class="title">{{ $t("signin.title") }}</div>
       </b-row>
       <b-row class="mb-3">
-        <b-form-input placeholder="Email address"></b-form-input>
+        <b-form-input :placeholder="$t('signin.input_text.email')"></b-form-input>
       </b-row>
       <b-row class="mb-3">
-        <b-form-input placeholder="Password"></b-form-input>
+        <b-form-input :placeholder="$t('signin.input_text.password')"></b-form-input>
       </b-row>
       <b-row class="mb-3">
-        <b-button variant="outline-success"><strong>Sign in to CharityMe</strong></b-button>
-        &nbsp;&nbsp;&nbsp;<b-link>Forgot your password?</b-link>
+        <b-button variant="outline-success"><strong>{{ $t("signin.buttons.signin") }}</strong></b-button>
+        &nbsp;&nbsp;&nbsp;<b-link>{{ $t("signin.links.forgot_password") }}</b-link>
       </b-row>
     </b-container>
   </div>

@@ -1,0 +1,15 @@
+{
+  "signin": {
+    "title": "Sign In",
+    "buttons": {
+      "signin": "Sign in to CharityMe"
+    },
+    "links" : {
+      "forgot_password": "Forgot your password?"
+    },
+    "input_text": {
+      "email": "Email address",
+      "password": "Password"
+    }
+  }
+}
