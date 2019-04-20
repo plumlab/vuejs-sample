@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue'
+import NavBar from '@/components/NavBar.vue'
 
 export default {
   name: 'app',
@@ -24,7 +24,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Lato,Arial,sans-serif;
   -webkit-font-smoothing: antialiased;

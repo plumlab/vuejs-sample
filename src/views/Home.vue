@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import FundRaise from '../components/FundRaise.vue'
-import KeyMarketing from '../components/KeyMarketing.vue'
+import FundRaise from '@/components/FundRaise.vue'
+import KeyMarketing from '@/components/KeyMarketing.vue'
 
 export default {
   name: 'home',
@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #content_section {
   padding: 4rem 1rem;
 }
