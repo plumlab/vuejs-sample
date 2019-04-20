@@ -17,8 +17,39 @@
           <b-nav-form>
             <b-form-input size="sm" placeholder="Search"></b-form-input>
           </b-nav-form>
-          <b-nav-item right><router-link v-bind:to="{name: 'SignIn'}">Sign in</router-link></b-nav-item>
+          <b-nav-item-dropdown :text="user" v-if="user" right>
+            <b-dropdown-item v-on:click.once="signout">Sign Out</b-dropdown-item>
+          </b-nav-item-dropdown>
+          <b-nav-item right v-else><router-link v-bind:to="{name: 'SignIn'}">Sign in</router-link></b-nav-item>
+          
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
 </template>
+
+<script>
+export default {
+  name: "NavBar",
+  data() {
+    return {
+    }
+  },
+
+  computed: {
+    user() {
+      if (this.$store.state.user) {
+        return this.$store.state.user.name
+      } else {
+        return ''
+      }
+    },
+  },
+
+  methods: {
+    signout() {
+      this.$store.state.user = null
+      this.$router.push('/')
+    }
+  }
+}
+</script>

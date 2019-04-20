@@ -11,12 +11,29 @@
         <b-form-input :placeholder="$t('signin.input_text.password')"></b-form-input>
       </b-row>
       <b-row class="mb-3">
-        <b-button variant="outline-success"><strong>{{ $t("signin.buttons.signin") }}</strong></b-button>
+        <b-button variant="outline-success" v-on:click.once="signin"><strong>{{ $t("signin.buttons.signin") }}</strong></b-button>
         &nbsp;&nbsp;&nbsp;<b-link>{{ $t("signin.links.forgot_password") }}</b-link>
       </b-row>
     </b-container>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      name: '',
+      token: '',
+    }
+  },
+  methods: {
+    async signin() {
+      await this.$store.dispatch('signIn')
+      this.$router.push('/')
+    }
+  }
+}
+</script>
 
 <style scoped>
 
