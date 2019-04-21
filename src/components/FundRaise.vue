@@ -33,7 +33,6 @@
 import Progress from './Progress.vue'
 
 export default {
-  name: 'fund',
   components: {
     Progress
   }

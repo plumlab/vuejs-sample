@@ -1,6 +1,11 @@
 import client from 'api-client'
 
-export default {
+const user = JSON.parse(localStorage.getItem('user'));
+const state = user
+    ? { status: { isLoggedIn: true }, user }
+    : { status: {}, user: {} };
+
+const actions = {
   signIn ({ commit }) {
     return new Promise((resolve, reject) => {
       client.signIn().then(user => {
@@ -15,6 +20,7 @@ export default {
       })
     })
   },
+
   signOut ({ commit }) {
     return new Promise(resolve => {
       commit('sign_out')
@@ -22,5 +28,23 @@ export default {
       delete localStorage.token
       resolve()
     })
+  },  
+};
+
+const mutations = {
+  set_user (state, user) {
+    state.user = user
+    state.status = { isLoggedIn: true }
   },
-}
+  sign_out (state) {
+    state.user = {}
+    state.status = {}
+  }
+};
+
+export const account = {
+  namespaced: true,
+  state,
+  actions,
+  mutations,
+};

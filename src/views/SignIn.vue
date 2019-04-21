@@ -5,10 +5,10 @@
         <div class="title">{{ $t("signin.title") }}</div>
       </b-row>
       <b-row class="mb-3">
-        <b-form-input :placeholder="$t('signin.input_text.email')"></b-form-input>
+        <b-form-input :placeholder="$t('signin.input_text.email')" v-model="email"></b-form-input>
       </b-row>
       <b-row class="mb-3">
-        <b-form-input :placeholder="$t('signin.input_text.password')"></b-form-input>
+        <b-form-input type="password" :placeholder="$t('signin.input_text.password')" v-model="password"></b-form-input>
       </b-row>
       <b-row class="mb-3">
         <b-button variant="outline-success" v-on:click.once="signin"><strong>{{ $t("signin.buttons.signin") }}</strong></b-button>
@@ -19,10 +19,19 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
   methods: {
+    ...mapActions('account', ['signIn']),
     async signin() {
-      await this.$store.dispatch('signIn')
+      await this.signIn()
       this.$router.push({name: "Home"})
     }
   }
