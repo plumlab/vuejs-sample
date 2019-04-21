@@ -5,10 +5,12 @@ export default {
     return new Promise((resolve, reject) => {
       client.signIn().then(user => {
         localStorage.setItem('user', JSON.stringify(user))
+        localStorage.token = user.token
         commit('set_user', user)
         resolve(user)
       }).catch(err => {
         localStorage.removeItem('user')
+        delete localStorage.token
         reject(err)
       })
     })
@@ -17,6 +19,7 @@ export default {
     return new Promise(resolve => {
       commit('sign_out')
       localStorage.removeItem('user')
+      delete localStorage.token
       resolve()
     })
   },

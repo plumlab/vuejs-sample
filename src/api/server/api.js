@@ -1,12 +1,29 @@
 import axios from 'axios'
 
-export default() => {
-  return axios.create({
-    baseURL: `http://mimblewimble.world/api`,
-    withCredentials: false,
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
+const API_URL = process.env.API_URL || 'http://localhost:3000/api/v1'
+
+const api = axios.create({
+  baseURL: API_URL,
+  withCredentials: false,
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  }
+})
+
+api.interceptors.request.use(
+  (config) => {
+    let token = localStorage.token
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${ token }`
     }
-  })
-}
+
+    return config
+  },
+
+  (error) => {
+    return Promise.reject(error)
+  }
+)
+
+export default api
