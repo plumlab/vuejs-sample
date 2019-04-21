@@ -17,8 +17,8 @@
           <b-nav-form>
             <b-form-input size="sm" placeholder="Search"></b-form-input>
           </b-nav-form>
-          <b-nav-item-dropdown :text="user" v-if="user" right>
-            <b-dropdown-item v-on:click.once="signout">Sign Out</b-dropdown-item>
+          <b-nav-item-dropdown right :text="name" v-if="isLoggedIn">
+            <b-dropdown-item v-on:click="signout">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item right v-else><router-link v-bind:to="{name: 'SignIn'}">Sign in</router-link></b-nav-item>
           
@@ -29,26 +29,22 @@
 
 <script>
 export default {
-  name: "NavBar",
-  data() {
-    return {
-    }
-  },
-
   computed: {
-    user() {
+    name() {
       if (this.$store.state.user) {
         return this.$store.state.user.name
-      } else {
-        return ''
       }
+      return ''
+    },
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn
     },
   },
 
   methods: {
-    signout() {
-      this.$store.state.user = null
-      this.$router.push('/')
+    async signout() {
+      await this.$store.dispatch('signOut')
+      this.$router.push({name: "Home"})
     }
   }
 }

@@ -20,16 +20,10 @@
 
 <script>
 export default {
-  data() {
-    return {
-      name: '',
-      token: '',
-    }
-  },
   methods: {
     async signin() {
       await this.$store.dispatch('signIn')
-      this.$router.push('/')
+      this.$router.push({name: "Home"})
     }
   }
 }
