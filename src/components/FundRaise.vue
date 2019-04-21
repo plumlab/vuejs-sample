@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import Progress from './Progress.vue'
+import Progress from '@/components/Progress.vue'
 
 export default {
   components: {

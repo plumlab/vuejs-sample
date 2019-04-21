@@ -8,8 +8,10 @@
       "forgot_password": "Forgot your password?"
     },
     "input_text": {
-      "email": "Email address",
-      "password": "Password"
+      "email": "john@example.com",
+      "email_description": "Let us know your email. We'll never share your email with anyone else.",
+      "password": "Password",
+      "password_description": "Please choose a strong password and don't tell to anyone else."
     }
   }
 }

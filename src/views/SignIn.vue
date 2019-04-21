@@ -1,20 +1,18 @@
 <template>
   <div class="signin">
-    <b-container fluid>
-      <b-row class="mb-3" align-h="center">
-        <div class="title">{{ $t("signin.title") }}</div>
-      </b-row>
-      <b-row class="mb-3">
-        <b-form-input :placeholder="$t('signin.input_text.email')" v-model="email"></b-form-input>
-      </b-row>
-      <b-row class="mb-3">
-        <b-form-input type="password" :placeholder="$t('signin.input_text.password')" v-model="password"></b-form-input>
-      </b-row>
-      <b-row class="mb-3">
-        <b-button variant="outline-success" v-on:click.once="signin"><strong>{{ $t("signin.buttons.signin") }}</strong></b-button>
-        &nbsp;&nbsp;&nbsp;<b-link>{{ $t("signin.links.forgot_password") }}</b-link>
-      </b-row>
-    </b-container>
+    <div class="title">{{ $t("signin.title") }}</div>
+    <b-form @submit="signin">
+      <b-form-group label-cols="0" label-for="email" :description="$t('signin.input_text.email_description')">
+        <b-form-input id="email" :placeholder="$t('signin.input_text.email')" v-model="email" v-validate="'required|email'" name="email" trim></b-form-input>
+        <b-form-invalid-feedback id="email-feedback">{{ errors.first('email') }}</b-form-invalid-feedback>
+      </b-form-group>
+      <b-form-group label-cols="0" label-for="password" :description="$t('signin.input_text.password_description')">
+        <b-form-input id="password" type="password" :placeholder="$t('signin.input_text.password')" v-model="password" v-validate="{ required: true, min: 8 }" name="password" trim></b-form-input>
+        <b-form-invalid-feedback id="password-feedback">{{ errors.first('password') }}</b-form-invalid-feedback>
+      </b-form-group>
+      <b-button variant="outline-success" type="submit"><strong>{{ $t("signin.buttons.signin") }}</strong></b-button>
+      &nbsp;&nbsp;&nbsp;<b-link>{{ $t("signin.links.forgot_password") }}</b-link>
+    </b-form>
   </div>
 </template>
 
@@ -25,14 +23,20 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
     }
   },
   methods: {
     ...mapActions('account', ['signIn']),
-    async signin() {
-      await this.signIn()
-      this.$router.push({name: "Home"})
+    signin(event) {
+      event.preventDefault()
+      this.$validator.validate().then(async valid => {
+        if (valid) {
+          const {email, password} = this
+          await this.signIn({email, password})
+          this.$router.push({name: "Home"})
+        }
+      })
     }
   }
 }
@@ -42,7 +46,7 @@ export default {
 
 .signin {
   background-color: #ffffff;
-  padding: 4rem 1rem;
+  padding: 2rem 1rem;
   margin-left: 400px;
   margin-right: 400px;
 }
@@ -51,6 +55,11 @@ export default {
   color: #333;
   font-weight: 900;
   font-size: 2.5rem;
+  text-align: center;
+}
+
+.invalid-feedback {
+  display: block;
 }
 
 </style>

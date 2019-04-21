@@ -1,4 +1,4 @@
-import client from 'api-client'
+import { userService } from 'service'
 
 const user = JSON.parse(localStorage.getItem('user'));
 const state = user
@@ -6,9 +6,9 @@ const state = user
     : { status: {}, user: {} };
 
 const actions = {
-  signIn ({ commit }) {
+  signIn ({ commit }, {email, password}) {
     return new Promise((resolve, reject) => {
-      client.signIn().then(user => {
+      userService.signIn(email, password).then(user => {
         localStorage.setItem('user', JSON.stringify(user))
         localStorage.token = user.token
         commit('set_user', user)
