@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 #app {
   font-family: Lato,Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -38,6 +38,13 @@ export default {
 
 .mb4x {
   margin-bottom: 4rem!important;
+}
+
+.title {
+  color: #333;
+  font-weight: 900;
+  font-size: 2.5rem;
+  text-align: center;
 }
 
 </style>

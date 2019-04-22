@@ -57,13 +57,6 @@ export default {
   margin-right: 380px;
 }
 
-.title {
-  color: #333;
-  font-weight: 900;
-  font-size: 2.5rem;
-  text-align: center;
-}
-
 .invalid-feedback {
   display: block;
 }

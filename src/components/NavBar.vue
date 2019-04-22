@@ -18,10 +18,12 @@
             <b-form-input size="sm" placeholder="Search"></b-form-input>
           </b-nav-form>
           <b-nav-item-dropdown right :text="user.name" v-if="status.isLoggedIn">
-            <b-dropdown-item v-on:click="signout">Sign Out</b-dropdown-item>
+            <b-dropdown-item v-on:click="signout"><span>Sign Out</span></b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item right v-else><router-link v-bind:to="{name: 'SignIn'}">Sign in</router-link></b-nav-item>
-          
+          <div class="sign-in-user-avatar">
+            <b-img src="https://graph.facebook.com/v2.3/10206470121935600/picture?" v-if="status.isLoggedIn"></b-img>
+          </div>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -44,3 +46,14 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+.sign-in-user-avatar img {
+  display: inline-block;
+  border-radius: 100%;
+  transition: all 0.2s ease;
+  max-height: 40px;
+}
+
+</style>
