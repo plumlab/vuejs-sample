@@ -28,7 +28,7 @@ const actions = {
       delete localStorage.token
       resolve()
     })
-  },  
+  },
 };
 
 const mutations = {

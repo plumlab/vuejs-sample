@@ -17,6 +17,11 @@ let router = new Router({
       path: '/sign-in',
       name: 'SignIn',
       component: () => import(/* webpackChunkName: "signin" */ '@/views/SignIn.vue')
+    },
+    {
+      path: '/sign-up',
+      name: "SignUp",
+      component: () => import(/* webpackChunkName: "signup" */ '@/views/Register.vue')
     }
   ]
 })

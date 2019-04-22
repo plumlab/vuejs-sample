@@ -1,17 +1,41 @@
 {
   "signin": {
     "title": "Sign In",
+    "text": {
+      "new": "New to CharityMe? "
+    },
     "buttons": {
       "signin": "Sign in to CharityMe"
     },
     "links" : {
-      "forgot_password": "Forgot your password?"
+      "forgot_password": "Forgot password?",
+      "signup": "Sign up"
     },
     "input_text": {
-      "email": "john@example.com",
+      "email": "Email address",
       "email_description": "Let us know your email. We'll never share your email with anyone else.",
       "password": "Password",
       "password_description": "Please choose a strong password and don't tell to anyone else."
+    }
+  },
+  "register": {
+    "title": "Sign Up",
+    "text": {
+      "registered": "Already signed up? "
+    },
+    "buttons": {
+      "register": "Register",
+      "reset": "Reset"
+    },
+    "links": {
+      "signin": "Sign in"
+    },
+    "input_text": {
+      "firstname": "Firstname",
+      "lastname": "Lastname",
+      "email": "Email address",
+      "password": "Password",
+      "confirm_password": "Confirm password"
     }
   }
 }
