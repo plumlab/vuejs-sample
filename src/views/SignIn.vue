@@ -3,14 +3,40 @@
     <div class="title">{{ $t("signin.title") }}</div>
     <b-form @submit="signin">
       <b-form-group label-cols="0" label-for="email">
-        <b-form-input id="email" :placeholder="$t('signin.input_text.email')" v-model="email" v-validate="'required|email'" name="email" trim></b-form-input>
-        <b-form-invalid-feedback id="email-feedback">{{ errors.first('email') }}</b-form-invalid-feedback>
+        <b-form-input
+          id="email"
+          name="email"
+          v-model="email"
+          v-validate="'required|email'"
+          :state="validateState('email')"
+          aria-describedby="email-feedback"
+          :placeholder="$t('signin.input_text.email')"
+          trim
+        ></b-form-input>
+        <b-form-invalid-feedback id="email-feedback">
+          {{ errors.first('email') }}
+        </b-form-invalid-feedback>
       </b-form-group>
       <b-form-group label-cols="0" label-for="password">
-        <b-form-input id="password" type="password" :placeholder="$t('signin.input_text.password')" v-model="password" v-validate="{ required: true, min: 8 }" name="password" trim></b-form-input>
-        <b-form-invalid-feedback id="password-feedback">{{ errors.first('password') }}</b-form-invalid-feedback>
+        <b-form-input
+          id="password"
+          name="password"
+          type="password"
+          v-model="password"
+          v-validate="{ required: true, min: 8 }"
+          :state="validateState('password')"
+          aria-describedby="password-feedback"
+          :placeholder="$t('signin.input_text.password')"
+          trim
+        ></b-form-input>
+        <b-form-invalid-feedback id="password-feedback">
+          {{ errors.first('password') }}
+        </b-form-invalid-feedback>
       </b-form-group>
-      <b-button variant="outline-success" type="submit"><strong>{{ $t("signin.buttons.signin") }}</strong></b-button>
+
+      <b-button variant="outline-success" type="submit" :disabled="errors.any()">
+        <strong>{{ $t("signin.buttons.signin") }}</strong>
+      </b-button>
       &nbsp;&nbsp;&nbsp;<b-link>{{ $t("signin.links.forgot_password") }}</b-link>
     </b-form>
     <br>
@@ -43,6 +69,12 @@ export default {
     signup(event) {
       event.preventDefault()
       this.$router.push({name: "SignUp"})
+    },
+    validateState(ref) {
+      if (this.veeFields[ref] && (this.veeFields[ref].dirty || this.veeFields[ref].validated)) {
+        return !this.errors.has(ref)
+      }
+      return null
     }
   }
 }
@@ -53,12 +85,8 @@ export default {
 .signin {
   background-color: #ffffff;
   padding: 2rem 1rem;
-  margin-left: 380px;
-  margin-right: 380px;
-}
-
-.invalid-feedback {
-  display: block;
+  margin-left: 400px;
+  margin-right: 400px;
 }
 
 </style>

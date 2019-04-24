@@ -9,7 +9,13 @@ import App from '@/app/App.vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-Vue.use(VeeValidate)
+Vue.use(VeeValidate, {
+  // This is the default
+  inject: true,
+  // Important to name this something other than 'fields'
+  fieldsBagName: 'veeFields'
+})
+
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
