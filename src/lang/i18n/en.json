@@ -37,5 +37,17 @@
       "password": "Password",
       "confirm_password": "Confirm password"
     }
+  },
+  "forgot-password": {
+    "title": "Forgot password?",
+    "text": {
+      "description": "Enter the email address you used to sign up and we'll send you a link to reset your password."
+    },
+    "buttons": {
+      "forgot": "Continue"
+    },
+    "input_text": {
+      "email": "Email address"  
+    }
   }
 }

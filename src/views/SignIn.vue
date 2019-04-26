@@ -1,6 +1,7 @@
 <template>
   <div class="signin">
     <div class="title">{{ $t("signin.title") }}</div>
+    <div class="solid-line mb2x"></div>
     <b-form @submit="signin">
       <b-form-group label-cols="0" label-for="email">
         <b-form-input
@@ -37,7 +38,7 @@
       <b-button variant="outline-success" type="submit" :disabled="errors.any()">
         <strong>{{ $t("signin.buttons.signin") }}</strong>
       </b-button>
-      &nbsp;&nbsp;&nbsp;<b-link>{{ $t("signin.links.forgot_password") }}</b-link>
+      &nbsp;&nbsp;&nbsp;<b-link @click="forgotPassword">{{ $t("signin.links.forgot_password") }}</b-link>
     </b-form>
     <br>
     {{ $t("signin.text.new") }}<b-link @click="signup">{{ $t("signin.links.signup") }}</b-link>
@@ -69,6 +70,10 @@ export default {
     signup(event) {
       event.preventDefault()
       this.$router.push({name: "SignUp"})
+    },
+    forgotPassword(event) {
+      event.preventDefault()
+      this.$router.push({name: "ForgotPassword"})
     },
     validateState(ref) {
       if (this.veeFields[ref] && (this.veeFields[ref].dirty || this.veeFields[ref].validated)) {

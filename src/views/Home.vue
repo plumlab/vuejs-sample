@@ -24,18 +24,9 @@ export default {
 </script>
 
 <style scoped>
+
 #content_section {
   padding: 4rem 1rem;
-}
-
-
-.solid-line {
-  background: 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.mb4x {
-  margin-bottom: 4rem!important;
 }
 
 </style>

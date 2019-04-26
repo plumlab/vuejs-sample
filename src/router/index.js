@@ -22,6 +22,11 @@ let router = new Router({
       path: '/sign-up',
       name: "SignUp",
       component: () => import(/* webpackChunkName: "signup" */ '@/views/Register.vue')
+    },
+    {
+      path: '/forgot-password',
+      name: "ForgotPassword",
+      component: () => import(/* webpackChunkName: "signup" */ '@/views/ForgotPassword.vue')
     }
   ]
 })

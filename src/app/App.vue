@@ -24,6 +24,7 @@ export default {
 </script>
 
 <style>
+
 #app {
   font-family: Lato,Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -34,6 +35,10 @@ export default {
 .solid-line {
   background: 0;
   border-bottom: 1px solid #ddd;
+}
+
+.mb2x {
+  margin-bottom: 2rem!important;
 }
 
 .mb4x {

@@ -1,6 +1,7 @@
 <template>
   <div class="register">
     <div class="title">{{ $t("register.title") }}</div>
+    <div class="solid-line mb2x"></div>
     <b-form @submit="register">
       <b-form-group label-cols="0" label-for="firstname">
         <b-form-input

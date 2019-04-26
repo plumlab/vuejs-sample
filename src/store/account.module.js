@@ -29,6 +29,10 @@ const actions = {
       resolve()
     })
   },
+
+  forgotPassword () {
+  }
+
 };
 
 const mutations = {
