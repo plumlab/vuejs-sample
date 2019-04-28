@@ -17,6 +17,14 @@ import KeyMarketing from '@/components/KeyMarketing.vue'
 
 export default {
   name: 'home',
+  metaInfo: {
+    title: 'Home',
+    titleTemplate: '%s - Charity Me!',
+    htmlAttrs: {
+      lang: 'en',
+      amp: true
+    }
+  },
   components: {
     FundRaise, KeyMarketing
   }

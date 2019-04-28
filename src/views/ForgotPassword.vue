@@ -33,6 +33,14 @@ import { mapActions } from 'vuex'
 import { validation } from '@/mixins'
 
 export default {
+  metaInfo: {
+    title: 'Forgot your password',
+    titleTemplate: '%s - Charity Me!',
+    htmlAttrs: {
+      lang: 'en',
+      amp: true
+    }
+  },
   mixins: [validation],
   data() {
     return {

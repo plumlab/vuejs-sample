@@ -106,6 +106,14 @@ import { mapActions } from 'vuex'
 import { modal, validation } from '@/mixins'
 
 export default {
+  metaInfo: {
+    title: 'Sign Up',
+    titleTemplate: '%s - Charity Me!',
+    htmlAttrs: {
+      lang: 'en',
+      amp: true
+    }
+  },
   mixins: [modal, validation],
   data() {
     return {

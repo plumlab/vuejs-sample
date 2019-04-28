@@ -17,6 +17,14 @@
 import NavBar from '@/components/NavBar.vue'
 
 export default {
+  metaInfo: {
+    title: 'Home',
+    titleTemplate: '%s - Charity Me!',
+    htmlAttrs: {
+      lang: 'en',
+      amp: true
+    }
+  },
   components: {
     NavBar
   }

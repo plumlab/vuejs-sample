@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueMeta from 'vue-meta'
 import VeeValidate from 'vee-validate';
 import BootstrapVue from 'bootstrap-vue'
 import router from '@/router'
@@ -8,6 +9,11 @@ import App from '@/app/App.vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(VueMeta, {
+  // optional pluginOptions
+  refreshOnceOnNavigation: true
+})
 
 Vue.use(VeeValidate, {
   // This is the default
