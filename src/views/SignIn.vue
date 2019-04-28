@@ -56,8 +56,10 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { modal, validation } from '@/mixins'
 
 export default {
+  mixins: [modal, validation],
   data() {
     return {
       email: '',
@@ -66,12 +68,6 @@ export default {
   },
   methods: {
     ...mapActions('account', ['signIn']),
-    showModal() {
-      this.$root.$emit('bv::show::modal', 'errorModal', '#btnShow')
-    },
-    hideModal() {
-      this.$root.$emit('bv::hide::modal', 'errorModal', '#btnShow')
-    },
     signin(event) {
       event.preventDefault()
       this.$validator.validate().then(async valid => {
@@ -79,7 +75,7 @@ export default {
           const {email, password} = this
           this.signIn({email, password}).then(() => {
             this.$router.push({name: "Home"})
-          }).catch(reject => {
+          }).catch(() => {
             this.showModal()
           })
         }
@@ -92,12 +88,6 @@ export default {
     forgotPassword(event) {
       event.preventDefault()
       this.$router.push({name: "ForgotPassword"})
-    },
-    validateState(ref) {
-      if (this.veeFields[ref] && (this.veeFields[ref].dirty || this.veeFields[ref].validated)) {
-        return !this.errors.has(ref)
-      }
-      return null
     }
   }
 }

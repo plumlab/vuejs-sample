@@ -30,8 +30,10 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { validation } from '@/mixins'
 
 export default {
+  mixins: [validation],
   data() {
     return {
       email: ''
@@ -48,12 +50,6 @@ export default {
           this.$router.push({name: "SignIn"})
         }
       })
-    },
-    validateState(ref) {
-      if (this.veeFields[ref] && (this.veeFields[ref].dirty || this.veeFields[ref].validated)) {
-        return !this.errors.has(ref)
-      }
-      return null
     }
   }
 }

@@ -103,8 +103,10 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { modal, validation } from '@/mixins'
 
 export default {
+  mixins: [modal, validation],
   data() {
     return {
       user: {}
@@ -112,12 +114,6 @@ export default {
   },
   methods: {
     ...mapActions('account', ['signUp']),
-    showModal() {
-      this.$root.$emit('bv::show::modal', 'errorModal', '#btnShow')
-    },
-    hideModal() {
-      this.$root.$emit('bv::hide::modal', 'errorModal', '#btnShow')
-    },
     signin(event) {
       event.preventDefault()
       this.$router.push({name: "SignIn"})
@@ -129,17 +125,11 @@ export default {
           const user = this
           this.signUp(user).then(() => {
             this.$router.push({name: "SignIn"})
-          }).catch(reject => {
+          }).catch(() => {
             this.showModal()
           })
         }
       })
-    },
-    validateState(ref) {
-      if (this.veeFields[ref] && (this.veeFields[ref].dirty || this.veeFields[ref].validated)) {
-        return !this.errors.has(ref)
-      }
-      return null
     }
   }
 }
