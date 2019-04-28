@@ -42,6 +42,15 @@
     </b-form>
     <br>
     {{ $t("signin.text.new") }}<b-link @click="signup">{{ $t("signin.links.signup") }}</b-link>
+
+    <b-button @click="showModal" ref="btnShow" hidden></b-button>
+    <b-modal id="errorModal" hide-footer :title="$t('signin.error.title')">
+      <div class="d-block">
+        <span>{{ $t("signin.error.description") }}</span>
+        <b-link @click="signup">{{ $t("signin.links.signup") }}</b-link>
+      </div>
+      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">{{ $t("signin.error.close") }}</b-button>
+    </b-modal>
   </div>
 </template>
 
@@ -57,13 +66,22 @@ export default {
   },
   methods: {
     ...mapActions('account', ['signIn']),
+    showModal() {
+      this.$root.$emit('bv::show::modal', 'errorModal', '#btnShow')
+    },
+    hideModal() {
+      this.$root.$emit('bv::hide::modal', 'errorModal', '#btnShow')
+    },
     signin(event) {
       event.preventDefault()
       this.$validator.validate().then(async valid => {
         if (valid) {
           const {email, password} = this
-          await this.signIn({email, password})
-          this.$router.push({name: "Home"})
+          this.signIn({email, password}).then(() => {
+            this.$router.push({name: "Home"})
+          }).catch(reject => {
+            this.showModal()
+          })
         }
       })
     },
