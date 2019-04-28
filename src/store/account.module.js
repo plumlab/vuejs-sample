@@ -8,11 +8,11 @@ const state = user
 const actions = {
   signIn ({ commit }, {email, password}) {
     return new Promise((resolve, reject) => {
-      userService.signIn(email, password).then(user => {
-        localStorage.setItem('user', JSON.stringify(user))
-        localStorage.token = user.token
-        commit('set_user', user)
-        resolve(user)
+      userService.signIn(email, password).then(res => {
+        localStorage.setItem('user', JSON.stringify(res.data))
+        localStorage.token = res.data.data.token
+        commit('set_user', res.data)
+        resolve(res)
       }).catch(err => {
         localStorage.removeItem('user')
         delete localStorage.token

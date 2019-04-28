@@ -17,7 +17,7 @@
           <b-nav-form>
             <b-form-input size="sm" placeholder="Search"></b-form-input>
           </b-nav-form>
-          <b-nav-item-dropdown right :text="user.name" v-if="status.isLoggedIn">
+          <b-nav-item-dropdown right :text="username" v-if="status.isLoggedIn">
             <b-dropdown-item v-on:click="signout"><span>Sign Out</span></b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item right v-else><router-link v-bind:to="{name: 'SignIn'}">Sign in</router-link></b-nav-item>
@@ -34,8 +34,14 @@ import { mapState, mapActions } from 'vuex'
 
 export default {
   computed: {
-    ...mapState('account', ['user', 'status'])
-  },  
+    ...mapState('account', ['user', 'status']),
+    username: function() {
+      if (this.user) {
+        return this.user.data.firstname + " " + this.user.data.lastname
+      }
+      return ''
+    }
+  },
 
   methods: {
     ...mapActions('account', ['signOut']),
