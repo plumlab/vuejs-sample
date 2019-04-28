@@ -19,7 +19,7 @@
     },
     "error": {
       "title": "Something wrong happen !!!",
-      "description": "Wrong username or password. If you still not register an account? ",
+      "message": "Wrong username or password. If you still not register an account? ",
       "close": "Close"
     }
   },
@@ -41,6 +41,11 @@
       "email": "Email address",
       "password": "Password",
       "confirm_password": "Confirm password"
+    },
+    "error": {
+      "title": "Something wrong happen !!!",
+      "message": "Unexpected error happen. Please try again later",
+      "close": "Close"
     }
   },
   "forgot-password": {
@@ -52,7 +57,7 @@
       "forgot": "Continue"
     },
     "input_text": {
-      "email": "Email address"  
+      "email": "Email address"
     }
   }
 }

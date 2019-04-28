@@ -46,7 +46,7 @@
     <b-button @click="showModal" ref="btnShow" hidden></b-button>
     <b-modal id="errorModal" hide-footer :title="$t('signin.error.title')">
       <div class="d-block">
-        <span>{{ $t("signin.error.description") }}</span>
+        <span>{{ $t("signin.error.message") }}</span>
         <b-link @click="signup">{{ $t("signin.links.signup") }}</b-link>
       </div>
       <b-button class="mt-3" variant="outline-danger" block @click="hideModal">{{ $t("signin.error.close") }}</b-button>

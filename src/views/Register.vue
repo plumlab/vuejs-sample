@@ -90,10 +90,20 @@
       </b-button>
       &nbsp;&nbsp;{{ $t("register.text.registered") }}<b-link @click="signin">{{ $t("register.links.signin") }}</b-link>
     </b-form>
+
+    <b-button @click="showModal" ref="btnShow" hidden></b-button>
+    <b-modal id="errorModal" hide-footer :title="$t('register.error.title')">
+      <div class="d-block">
+        <span>{{ $t("register.error.message") }}</span>
+      </div>
+      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">{{ $t("register.error.close") }}</b-button>
+    </b-modal>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   data() {
     return {
@@ -101,6 +111,13 @@ export default {
     }
   },
   methods: {
+    ...mapActions('account', ['signUp']),
+    showModal() {
+      this.$root.$emit('bv::show::modal', 'errorModal', '#btnShow')
+    },
+    hideModal() {
+      this.$root.$emit('bv::hide::modal', 'errorModal', '#btnShow')
+    },
     signin(event) {
       event.preventDefault()
       this.$router.push({name: "SignIn"})
@@ -108,8 +125,13 @@ export default {
     register(event) {
       event.preventDefault()
       this.$validator.validate().then(async valid => {
-        if (valid) {      
-          this.$router.push({name: "Home"})
+        if (valid) {
+          const user = this
+          this.signUp(user).then(() => {
+            this.$router.push({name: "SignIn"})
+          }).catch(reject => {
+            this.showModal()
+          })
         }
       })
     },

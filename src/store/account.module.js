@@ -21,6 +21,16 @@ const actions = {
     })
   },
 
+  signUp ({ commit }, {user}) {
+    return new Promise((resolve, reject) => {
+      userService.signUp(user).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+
   signOut ({ commit }) {
     return new Promise(resolve => {
       commit('sign_out')
