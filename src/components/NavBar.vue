@@ -46,8 +46,11 @@ export default {
   methods: {
     ...mapActions('account', ['signOut']),
     async signout() {
-      await this.signOut()
-      this.$router.push({name: "Home"})
+      this.signOut().then(() => {
+        this.$router.push({name: "Home"})
+      }).catch(() => {
+        this.$router.push({name: "SignIn"})
+      })
     }
   }
 }

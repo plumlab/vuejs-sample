@@ -17,4 +17,8 @@ export const userService = {
       "confirmPassword": user.confirmPassword
     })
   },
+
+  signOut() {
+    return api.post("/signout")
+  }
 }

@@ -32,11 +32,16 @@ const actions = {
   },
 
   signOut ({ commit }) {
-    return new Promise(resolve => {
-      commit('sign_out')
-      localStorage.removeItem('user')
-      delete localStorage.token
-      resolve()
+    return new Promise((resolve, reject) => {
+      userService.signOut().then(res => {
+        commit('sign_out')
+        localStorage.removeItem('user')
+        delete localStorage.token
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+
     })
   },
 
