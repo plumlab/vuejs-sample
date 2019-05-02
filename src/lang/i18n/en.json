@@ -58,6 +58,11 @@
     },
     "input_text": {
       "email": "Email address"
+    },
+    "error": {
+      "title": "Something wrong happen !!!",
+      "message": "Account/email does not exist, please ensure that you input correctly your email.",
+      "close": "Close"
     }
   }
 }

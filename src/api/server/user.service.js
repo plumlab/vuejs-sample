@@ -20,5 +20,9 @@ export const userService = {
 
   signOut() {
     return api.post("/signout")
+  },
+
+  forgotPassword(email) {
+    return api.post("/forgot-password", {"email": email})
   }
 }

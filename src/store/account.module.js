@@ -41,11 +41,17 @@ const actions = {
       }).catch(err => {
         reject(err)
       })
-
     })
   },
 
-  forgotPassword () {
+  forgotPassword ({ commit }, {email}) {
+    return new Promise((resolve, reject) => {
+      userService.forgotPassword(email).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
   }
 
 };

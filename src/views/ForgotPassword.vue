@@ -1,5 +1,16 @@
 <template>
   <div class="forgot-password">
+    <b-alert
+      :show="dismissCountDown"
+      dismissible
+      fade
+      variant="success"
+      @dismissed="dismissCountDown=0"
+      @dismiss-count-down="countDownChanged"
+    >
+      Reset instructions sent to {{ email }}
+    </b-alert>
+
     <b-form @submit="forgot">
       <div class="title">{{ $t("forgot-password.title") }}</div>
       <div class="solid-line mb2x"></div>
@@ -25,12 +36,20 @@
         <strong>{{ $t("forgot-password.buttons.forgot") }}</strong>
       </b-button>
     </b-form>
+
+    <b-button @click="showModal" ref="btnShow" hidden></b-button>
+    <b-modal id="errorModal" hide-footer :title="$t('forgot-password.error.title')">
+      <div class="d-block">
+        <span>{{ $t("forgot-password.error.message") }}</span>
+      </div>
+      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">{{ $t("forgot-password.error.close") }}</b-button>
+    </b-modal>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
-import { validation } from '@/mixins'
+import { modal, validation } from '@/mixins'
 
 export default {
   metaInfo: {
@@ -41,10 +60,12 @@ export default {
       amp: true
     }
   },
-  mixins: [validation],
+  mixins: [modal, validation],
   data() {
     return {
-      email: ''
+      email: '',
+      dismissSecs: 15,
+      dismissCountDown: 0
     }
   },
   methods: {
@@ -54,10 +75,19 @@ export default {
       this.$validator.validate().then(async valid => {
         if (valid) {
           const {email} = this
-          await this.forgotPassword({email})
-          this.$router.push({name: "SignIn"})
+          this.forgotPassword({email}).then(() => {
+            this.showAlert()
+          }).catch(() => {
+            this.showModal()
+          })
         }
       })
+    },
+    countDownChanged(dismissCountDown) {
+      this.dismissCountDown = dismissCountDown
+    },
+    showAlert() {
+      this.dismissCountDown = this.dismissSecs
     }
   }
 }
