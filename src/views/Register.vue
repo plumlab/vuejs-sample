@@ -2,7 +2,7 @@
   <div class="register">
     <div class="title">{{ $t("register.title") }}</div>
     <div class="solid-line mb2x"></div>
-    <b-form @submit="register">
+    <b-form @submit.prevent="register">
       <b-form-group label-cols="0" label-for="firstname">
         <b-form-input
           id="firstname"
@@ -88,15 +88,15 @@
       <b-button variant="outline-danger" type="reset">
         <strong>{{ $t("register.buttons.reset") }}</strong>
       </b-button>
-      &nbsp;&nbsp;{{ $t("register.text.registered") }}<b-link @click="signin">{{ $t("register.links.signin") }}</b-link>
+      &nbsp;&nbsp;{{ $t("register.text.registered") }}<b-link @click.prevent="signin">{{ $t("register.links.signin") }}</b-link>
     </b-form>
 
-    <b-button @click="showModal" ref="btnShow" hidden></b-button>
+    <b-button @click.prevent="showModal" ref="btnShow" hidden></b-button>
     <b-modal id="errorModal" hide-footer :title="$t('register.error.title')">
       <div class="d-block">
         <span>{{ $t("register.error.message") }}</span>
       </div>
-      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">{{ $t("register.error.close") }}</b-button>
+      <b-button class="mt-3" variant="outline-danger" block @click.prevent="hideModal">{{ $t("register.error.close") }}</b-button>
     </b-modal>
   </div>
 </template>
@@ -122,12 +122,10 @@ export default {
   },
   methods: {
     ...mapActions('account', ['signUp']),
-    signin(event) {
-      event.preventDefault()
+    signin() {
       this.$router.push({name: "SignIn"})
     },
-    register(event) {
-      event.preventDefault()
+    register() {
       this.$validator.validate().then(async valid => {
         if (valid) {
           const user = this

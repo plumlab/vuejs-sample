@@ -2,7 +2,7 @@
   <div class="signin">
     <div class="title">{{ $t("signin.title") }}</div>
     <div class="solid-line mb2x"></div>
-    <b-form @submit="signin">
+    <b-form @submit.prevent="signin">
       <b-form-group label-cols="0" label-for="email">
         <b-form-input
           id="email"
@@ -41,15 +41,15 @@
       &nbsp;&nbsp;&nbsp;<b-link @click="forgotPassword">{{ $t("signin.links.forgot_password") }}</b-link>
     </b-form>
     <br>
-    {{ $t("signin.text.new") }}<b-link @click="signup">{{ $t("signin.links.signup") }}</b-link>
+    {{ $t("signin.text.new") }}<b-link @click.prevent="signup">{{ $t("signin.links.signup") }}</b-link>
 
     <b-button @click="showModal" ref="btnShow" hidden></b-button>
     <b-modal id="errorModal" hide-footer :title="$t('signin.error.title')">
       <div class="d-block">
         <span>{{ $t("signin.error.message") }}</span>
-        <b-link @click="signup">{{ $t("signin.links.signup") }}</b-link>
+        <b-link @click.prevent="signup">{{ $t("signin.links.signup") }}</b-link>
       </div>
-      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">{{ $t("signin.error.close") }}</b-button>
+      <b-button class="mt-3" variant="outline-danger" block @click.prevent="hideModal">{{ $t("signin.error.close") }}</b-button>
     </b-modal>
   </div>
 </template>
@@ -76,8 +76,7 @@ export default {
   },
   methods: {
     ...mapActions('account', ['signIn']),
-    signin(event) {
-      event.preventDefault()
+    signin() {
       this.$validator.validate().then(async valid => {
         if (valid) {
           const {email, password} = this
@@ -89,12 +88,10 @@ export default {
         }
       })
     },
-    signup(event) {
-      event.preventDefault()
+    signup() {
       this.$router.push({name: "SignUp"})
     },
-    forgotPassword(event) {
-      event.preventDefault()
+    forgotPassword() {
       this.$router.push({name: "ForgotPassword"})
     }
   }

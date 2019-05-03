@@ -11,7 +11,7 @@
       Reset instructions sent to {{ email }}
     </b-alert>
 
-    <b-form @submit="forgot">
+    <b-form @submit.prevent="forgot">
       <div class="title">{{ $t("forgot-password.title") }}</div>
       <div class="solid-line mb2x"></div>
       <span>{{ $t("forgot-password.text.description") }}</span>
@@ -37,12 +37,12 @@
       </b-button>
     </b-form>
 
-    <b-button @click="showModal" ref="btnShow" hidden></b-button>
+    <b-button @click.prevent="showModal" ref="btnShow" hidden></b-button>
     <b-modal id="errorModal" hide-footer :title="$t('forgot-password.error.title')">
       <div class="d-block">
         <span>{{ $t("forgot-password.error.message") }}</span>
       </div>
-      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">{{ $t("forgot-password.error.close") }}</b-button>
+      <b-button class="mt-3" variant="outline-danger" block @click.prevent="hideModal">{{ $t("forgot-password.error.close") }}</b-button>
     </b-modal>
   </div>
 </template>
@@ -70,8 +70,7 @@ export default {
   },
   methods: {
     ...mapActions('account', ['forgotPassword']),
-    forgot(event) {
-      event.preventDefault()
+    forgot() {
       this.$validator.validate().then(async valid => {
         if (valid) {
           const {email} = this
