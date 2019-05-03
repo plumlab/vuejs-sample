@@ -26,7 +26,17 @@ let router = new Router({
     {
       path: '/forgot-password',
       name: "ForgotPassword",
-      component: () => import(/* webpackChunkName: "signup" */ '@/views/ForgotPassword.vue')
+      component: () => import(/* webpackChunkName: "forgot-password" */ '@/views/ForgotPassword.vue')
+    },
+    {
+      path: '/reset-password',
+      name: "ResetPassword",
+      component: () => import(/* webpackChunkName: "reset-password" */ '@/views/ResetPassword.vue')
+    },
+    {
+      path: '/reset/expired',
+      name: "ResetPasswordExpired",
+      component: () => import(/* webpackChunkName: "reset-password-expired" */ '@/views/ResetPasswordExpired.vue')
     }
   ]
 })

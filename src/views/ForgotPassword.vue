@@ -8,7 +8,7 @@
       @dismissed="dismissCountDown=0"
       @dismiss-count-down="countDownChanged"
     >
-      Reset instructions sent to {{ email }}
+      {{ $t("forgot-password.text.alert") }} {{ email }}
     </b-alert>
 
     <b-form @submit.prevent="forgot">

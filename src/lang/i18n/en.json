@@ -51,7 +51,8 @@
   "forgot-password": {
     "title": "Forgot password?",
     "text": {
-      "description": "Enter the email address you used to sign up and we'll send you a link to reset your password."
+      "description": "Enter the email address you used to sign up and we'll send you a link to reset your password.",
+      "alert": "Reset instructions sent to "
     },
     "buttons": {
       "forgot": "Continue"
@@ -63,6 +64,33 @@
       "title": "Something wrong happen !!!",
       "message": "Account/email does not exist, please ensure that you input correctly your email.",
       "close": "Close"
+    }
+  },
+  "reset-password": {
+    "title": "Reset password",
+    "buttons": {
+      "reset": "Reset"
+    },
+    "text": {
+      "alert": "You can reset your password by inputting a new one below."
+    },
+    "input_text": {
+      "password": "Password",
+      "confirm_password": "Confirm password"
+    },
+    "error": {
+      "title": "Something wrong happen !!!",
+      "message": "We cannot proceed your request at the moment. Please try again later.",
+      "close": "Close"
+    }
+  },
+  "reset-password-expired": {
+    "title": "Password Recovery",
+    "text": {
+      "description": "It looks like the link you clicked has expired. Please try requesting another reset."
+    },
+    "buttons": {
+      "signin": "BACK TO LOGIN SCREEN"
     }
   }
 }
