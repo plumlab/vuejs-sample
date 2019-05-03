@@ -26,6 +26,10 @@ export const userService = {
     return api.post("/forgot-password", {"email": email})
   },
 
+  resetPassword(token, password) {
+    return api.post("/reset-password", {"token": token, "password": password})
+  },
+
   verifyToken(token) {
     return api.post("/verify-token", {"token": token})
   }

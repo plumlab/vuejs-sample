@@ -78,6 +78,7 @@ export default {
   mixins: [modal, validation],
   data() {
     return {
+      token: "",
       password: "",
       confirmPassword: "",
       dismissSecs: 15,
@@ -88,6 +89,7 @@ export default {
     let urlParams = new URLSearchParams(window.location.search)
     let token = urlParams.get('token')
     this.verifyToken({token}).then(() => {
+      this.token = token
       this.showAlert()
     }).catch(() => {
       this.$router.push({name: "ResetPasswordExpired"})
@@ -98,8 +100,8 @@ export default {
     reset() {
       this.$validator.validate().then(async valid => {
         if (valid) {
-          const {password} = this
-          this.resetPassword({password}).then(() => {
+          const {token, password} = this
+          this.resetPassword({token, password}).then(() => {
             this.$router.push({name: "SignIn"})
           }).catch(() => {
             this.showModal()

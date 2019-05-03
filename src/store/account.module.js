@@ -54,6 +54,16 @@ const actions = {
     })
   },
 
+  resetPassword ({ commit }, {token, password}) {
+    return new Promise((resolve, reject) => {
+      userService.resetPassword(token, password).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+
   verifyToken({ commit }, {token}) {
     return new Promise((resolve, reject) => {
       userService.verifyToken(token).then(res => {
