@@ -37,7 +37,16 @@ let router = new Router({
       path: '/reset/expired',
       name: "ResetPasswordExpired",
       component: () => import(/* webpackChunkName: "reset-password-expired" */ '@/views/ResetPasswordExpired.vue')
-    }
+    },
+    {
+      path: '/verify-email',
+      component: () => import(/* webpackChunkName: "verify-email" */ '@/views/VerifyEmail.vue')
+    },
+    {
+      path: '/verify-email/expired',
+      name: "VerifyEmailExpired",
+      component: () => import(/* webpackChunkName: "verify-email-expired" */ '@/views/VerifyEmailExpired.vue')
+    },
   ]
 })
 

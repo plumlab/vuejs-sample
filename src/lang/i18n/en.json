@@ -92,5 +92,24 @@
     "buttons": {
       "signin": "BACK TO LOGIN SCREEN"
     }
+  },
+  "verify-email": {
+    "title": "Email Verification",
+    "text": {
+      "alert": "Verify your email successfully!!!",
+      "goto": "You can go to "
+    },
+    "links": {
+      "signin": "Sign in"
+    }
+  },
+  "verify-email-expired": {
+    "title": "Email Verification",
+    "text": {
+      "description": "It looks like the link you clicked has expired. Please try requesting another email verification."
+    },
+    "buttons": {
+      "signin": "BACK TO LOGIN SCREEN"
+    }
   }
 }

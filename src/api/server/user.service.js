@@ -32,5 +32,9 @@ export const userService = {
 
   verifyToken(token) {
     return api.post("/verify-token", {"token": token})
+  },
+
+  verifyEmail(token) {
+    return api.post("/verify-email", {"token": token})
   }
 }

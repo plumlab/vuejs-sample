@@ -72,6 +72,16 @@ const actions = {
         reject(err)
       })
     })
+  },
+
+  verifyEmail({ commit }, {token}) {
+    return new Promise((resolve, reject) => {
+      userService.verifyEmail(token).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
   }
 
 };
