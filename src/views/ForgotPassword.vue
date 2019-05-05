@@ -71,12 +71,13 @@ export default {
   methods: {
     ...mapActions('account', ['forgotPassword']),
     forgot() {
-      this.$validator.validate().then(async valid => {
+      this.$validator.validate().then(valid => {
         if (valid) {
           const {email} = this
           this.forgotPassword({email}).then(() => {
             this.showAlert()
-          }).catch(() => {
+          }).catch(error => {
+            this.$log.debug(error)
             this.showModal()
           })
         }

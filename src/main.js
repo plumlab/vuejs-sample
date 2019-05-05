@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueMeta from 'vue-meta'
 import VeeValidate from 'vee-validate';
 import BootstrapVue from 'bootstrap-vue'
+import VueLogger from 'vuejs-logger';
 import router from '@/router'
 import { store } from '@/store'
 import i18n from '@/lang'
@@ -9,6 +10,18 @@ import App from '@/app/App.vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+const options = {
+  isEnabled: true,
+  logLevel : 'debug',
+  stringifyArguments : false,
+  showLogLevel : true,
+  showMethodName : false,
+  separator: '|',
+  showConsoleColors: true
+};
+
+Vue.use(VueLogger, options);
 
 Vue.use(VueMeta, {
   // optional pluginOptions

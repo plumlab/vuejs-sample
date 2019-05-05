@@ -77,12 +77,13 @@ export default {
   methods: {
     ...mapActions('account', ['signIn']),
     signin() {
-      this.$validator.validate().then(async valid => {
+      this.$validator.validate().then(valid => {
         if (valid) {
           const {email, password} = this
           this.signIn({email, password}).then(() => {
             this.$router.push({name: "Home"})
-          }).catch(() => {
+          }).catch(error => {
+            this.$log.debug(error)
             this.showModal()
           })
         }

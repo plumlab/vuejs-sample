@@ -126,12 +126,13 @@ export default {
       this.$router.push({name: "SignIn"})
     },
     register() {
-      this.$validator.validate().then(async valid => {
+      this.$validator.validate().then(valid => {
         if (valid) {
           const user = this
           this.signUp(user).then(() => {
             this.$router.push({name: "SignIn"})
-          }).catch(() => {
+          }).catch(error => {
+            this.$log.debug(error)
             this.showModal()
           })
         }
