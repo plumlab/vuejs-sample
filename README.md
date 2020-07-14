@@ -1,4 +1,4 @@
-# charity-me-web
+# VueJS Sample WebApp
 
 ## Project setup
 ```
